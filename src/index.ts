@@ -3,6 +3,12 @@ import prisma from "./config/prisma";
 import UserEntity from "./entities/User";
 
 const app = express();
+app.use(express.json())
+
+app.use((req, _res, next) => {
+  console.log(req.method, req.url)
+  next()
+})
 
 app.post(`/users`, async (req, res) => {
   const { name, email } = req.body;
@@ -67,8 +73,6 @@ app.delete("/users/:id", async (req, res) => {
 });
 
 
-const server = app.listen(3000, () =>
-  console.log(`
-🚀 Server ready at: http://localhost:3000
-⭐️ See sample requests: http://pris.ly/e/ts/rest-express#3-using-the-rest-api`)
-);
+app.listen(3000, () => {
+  console.log('🚀 Server ready at: http://localhost:3000')
+});

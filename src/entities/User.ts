@@ -11,12 +11,13 @@ class UserEntity extends BaseEntity<typeof prisma.user>  {
   }
 
   protected async beforeCreate<Args extends { select?: Prisma.UserSelect | null | undefined; include?: Prisma.UserInclude | null | undefined; data: (Prisma.Without<Prisma.UserCreateInput, Prisma.UserUncheckedCreateInput> & Prisma.UserUncheckedCreateInput) | (Prisma.Without<Prisma.UserUncheckedCreateInput, Prisma.UserCreateInput> & Prisma.UserCreateInput); }>(args: Args): Promise<Args> {
-      return {
-        ...args,
-        data: {
-          name: "Test" + args.data.name,
-        }
+    return {
+      ...args,
+      data: {
+        ...args.data,
+        name: '(Test) ' + args.data.name
       }
+    }
   }
 
 

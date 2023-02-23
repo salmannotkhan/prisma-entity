@@ -145,3 +145,6 @@ dist
 
 # Mac files
 .DS_Store
+
+# Sqlite
+dev.db
